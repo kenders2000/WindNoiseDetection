@@ -24,8 +24,6 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "iphone1.wav" "-o" "iphone1.txt" "-t" "2" "-g" "1" "-f" "43"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "Mr Woodnote &amp;amp; Lil Rhys - Oxford 2014 (HD).wav" "-o" "Mr Woodnote &amp;amp; Lil Rhys - Oxford 2014 (HD).txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "windnoiseexamples/Mr Woodnote &amp;amp; Lil Rhys - Oxford 2014 (HD).wav" "-o" "windnoiseexamples/Mr Woodnote &amp;amp; Lil Rhys - Oxford 2014 (HD).txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "iphone1.wav" "-o" "iphone1.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "windnoiseexamples/'If The Sun Refused To Shine' Sarva On The Bench At Wells Cathedral Near Glastonbury..wav" "-o" "windnoiseexamples/'If The Sun Refused To Shine' Sarva On The Bench At Wells Cathedral Near Glastonbury..txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
@@ -34,8 +32,10 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "windnoiseexamples/Didgeridoo Glastonbury Tor. Summerset. Bealer10..wav" "-o" "windnoiseexamples/Didgeridoo Glastonbury Tor. Summerset. Bealer10..txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "windnoiseexamples/test/windsample.wav" "-o" "windnoiseexamples/test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
+          <runcommandpicklistitem>"-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
+          <runcommandpicklistitem>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommand>
+        <runcommand>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

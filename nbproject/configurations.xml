@@ -55,7 +55,7 @@
     <conf name="Debug" type="1">
       <toolsSet>
         <compilerSet>Cygwin_4.x_1_32|Cygwin_4.x</compilerSet>
-        <dependencyChecking>true</dependencyChecking>
+        <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>

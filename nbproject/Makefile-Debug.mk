@@ -69,33 +69,27 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1.exe: ${OBJECTFILES}
 
 ${OBJECTDIR}/src/DecisionTreeClass.o: src/DecisionTreeClass.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/DecisionTreeClass.o src/DecisionTreeClass.cpp
+	$(COMPILE.cc) -g -s -o ${OBJECTDIR}/src/DecisionTreeClass.o src/DecisionTreeClass.cpp
 
 ${OBJECTDIR}/src/aweighting.o: src/aweighting.c 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/aweighting.o src/aweighting.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/src/aweighting.o src/aweighting.c
 
 ${OBJECTDIR}/src/featureExtraction.o: src/featureExtraction.c 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/featureExtraction.o src/featureExtraction.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/src/featureExtraction.o src/featureExtraction.c
 
 ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o: src/kiss_fft130/kiss_fft.c 
 	${MKDIR} -p ${OBJECTDIR}/src/kiss_fft130
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o src/kiss_fft130/kiss_fft.c
+	$(COMPILE.c) -g -o ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o src/kiss_fft130/kiss_fft.c
 
 ${OBJECTDIR}/src/main.o: src/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
+	$(COMPILE.cc) -g -s -o ${OBJECTDIR}/src/main.o src/main.cpp
 
 ${OBJECTDIR}/src/processInWindows.o: src/processInWindows.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/processInWindows.o src/processInWindows.cpp
+	$(COMPILE.cc) -g -s -o ${OBJECTDIR}/src/processInWindows.o src/processInWindows.cpp
 
 # Subprojects
 .build-subprojects:
@@ -107,8 +101,3 @@ ${OBJECTDIR}/src/processInWindows.o: src/processInWindows.cpp
 
 # Subprojects
 .clean-subprojects:
-
-# Enable dependency checking
-.dep.inc: .depcheck-impl
-
-include .dep.inc
