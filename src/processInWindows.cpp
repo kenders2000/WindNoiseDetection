@@ -343,7 +343,7 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     fprintf(pFile2, "\n");
    fprintf(pFile2, "Wind noise time history\n\n");
 
-    fprintf(pFile2, "T(s)\t\tQuality Degredation(%%)\t dBA \n");
+    fprintf(pFile2, "T(s)\t\tQuality Degradation(%%)\t dBA \n");
 
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 

@@ -82,7 +82,7 @@ void aWeightingPreComp(float * f,int fftn)
     float f4 = 12194;// % Hz
     float f1000 = 1000;
     float freq;
-    AWfun = malloc((int)(fftn ) * sizeof(float));
+    AWfun = (float*)malloc((int)(fftn ) * sizeof(float));
 
     // double AWfun[fftn/2];
     float W1000 = (pow(f4,2)) * (pow(f1000,4)) / ((pow(f1000,2) + pow(f1,2)) * sqrt(pow(f1000,2) + pow(f2,2)) *

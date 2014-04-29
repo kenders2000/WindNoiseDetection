@@ -24,18 +24,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
-          <runcommandpicklistitem>"-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
-          <runcommandpicklistitem>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-th" "4"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-h" "4"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "4"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "3"</runcommandpicklistitem>
+          <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "3" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
+          <runcommandpicklistitem>wind.exe "-i" "test/windsample.txt.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
+          <runcommandpicklistitem>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommand>
+        <runcommand>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

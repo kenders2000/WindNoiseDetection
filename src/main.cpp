@@ -40,13 +40,13 @@ int main(int argc, char* argv[]) {
     // char * inputFile = "iphone1.wav";
     // char * outputFile = "iphone1.wav";
     int opt = 0;
-    char *in_fname = "iphone1.wav";
-    char *out_fname = "iphone1.txt";
+    char *in_fname = (char *)"iphone1.wav";
+    char *out_fname = (char *)"iphone1.txt";
     char *trees[3];
     float thresh=25;
-    trees[0] = "dectrees_10_5000";
-    trees[1] = "dectrees_10_20000";
-    trees[2] = "dectrees_10_100000";
+    trees[0] =(char *)"dectrees_10_5000";
+    trees[1] = (char *)"dectrees_10_20000";
+    trees[2] = (char *)"dectrees_10_100000";
     int tree = 1;
     char *treeDir;
     treeDir = trees[1];
@@ -112,6 +112,7 @@ int main(int argc, char* argv[]) {
                 } else {
                     printf("\nInvalid option received");
                 }
+                printf("\n");
                 break;
         }
         testForIO = 1;

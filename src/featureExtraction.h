@@ -31,5 +31,6 @@ THE SOFTWARE.
 #include <stdio.h>      /* Standard Library of Input and Output */
 //#include <complex.h>    /* Standart Library of Complex Numbers */
 #include "aweighting.h"
-
+ void melSpec(int Fs,float * f, float * spec,int fftn,float *mfcc);
+ void dctComp(float * data, int N,float *mfcc);
 #endif	/* FEATUREEXTRACTION_H */
