@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
     char *in_fname = "iphone1.wav";
     char *out_fname = "iphone1.txt";
     char *trees[3];
+    float thresh=25;
     trees[0] = "dectrees_10_5000";
     trees[1] = "dectrees_10_20000";
     trees[2] = "dectrees_10_100000";
@@ -52,8 +53,13 @@ int main(int argc, char* argv[]) {
     int treeFail = 0;
     float gain = 1;
     int frameAve = 43;
-    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:")) != -1) {
+    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:")) != -1) {
         switch (opt) {
+             case 'w':
+                thresh = atof(optarg);
+                printf("\nThreshold=%0.0f", thresh);
+                thresh=thresh/100;
+                break;
             case 'g':
                 gain = atof(optarg);
                 printf("\nGain=%f", gain);
@@ -124,11 +130,13 @@ int main(int argc, char* argv[]) {
         printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");
 
 
+    }else
+    {    
+        printf("\n");
+        loadWav(in_fname, out_fname, treeDir, gain, frameAve,thresh);
     }
 
-    printf("\n");
 
-    loadWav(in_fname, out_fname, treeDir, gain, frameAve);
     return 0;
 }
 

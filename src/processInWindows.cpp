@@ -38,7 +38,7 @@ struct wavfile {
 
 static struct wavfile header;
 
-void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int frameAve) {
+void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int frameAve,float thresh) {
     char str1[100], str2[100];
     FILE * pFile;
 
@@ -264,7 +264,7 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     float maxAveLevel = 0;
     float minAveSNR = 5;
     float aveAveSNR = 0;
-    float thresh = 0.2;
+    //float thresh = 0.2;
     float avecomb = 0;
     float maxcomb = 0;
     float count_wF5 = 0;
@@ -328,20 +328,22 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     avecomb = avecomb / counter;
     aveAveSNR = aveAveSNR / counter;
     aveAveLevel = aveAveLevel / counter;
-    //outFilename
-
-    // remove(outFilename);
+    
+     // remove(outFilename);
 
     FILE * pFile2;
     pFile2 = fopen(outFilename, "w");
     pFile = fopen(str2, "r");
-    fprintf(pFile2, "Microphone Wind noise Analysis for input file %s\n", filename);
-    // fprintf(pFile2,"Ave wind Level | Ave SNR | Ave Combined indicator | Max wind Level | Min SNR | Max Combined indicator \n",filename);
-    // fprintf(pFile2,"%0.1f %0.1f %0.1f %0.1f %0.1f %0.1f\n",aveAveLevel,aveAveSNR,avecomb,maxAveLevel,minAveSNR,maxcomb);
-    fprintf(pFile2, "%0.1f %0.1f %0.1f %0.1f %0.1f %0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+   fprintf(pFile2, "Microphone Wind Noise Detection - University of Salford - the Good Recording Project http://www.goodrecording.net \n\n", filename);
+    fprintf(pFile2, "Microphone Wind noise Analysis for input file %s\n\n", filename);
+    fprintf(pFile2, "Wind Noise Statistics, %% number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality)\n\n");
+    fprintf(pFile2, "Wind Free(>20dB),\t20 to 10dB,\t10 to 0dB,\t0 to -10dB,\t-10 to -20dB,\t<-20dB\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+    fprintf(pFile2, "%0.1f\t\t\t\t%0.1f\t\t\t%0.1f\t\t\t%0.1f\t\t\t%0.1f\t\t\t%0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
 
+    fprintf(pFile2, "\n");
+   fprintf(pFile2, "Wind noise time history\n\n");
 
-    fprintf(pFile2, "T(s),\t\tQuality Degredation(%%),\t dBA; \n");
+    fprintf(pFile2, "T(s)\t\tQuality Degredation(%%)\t dBA \n");
 
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
@@ -349,11 +351,11 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
         sscanf(mystring, "%f %f %f %f %f;", &t, &dBA,
                 &level, &snr, &comb);
 
-        fprintf(pFile2, "%0.1f,\t\t%0.0f,\t\t\t\t\t%0.0f,;\n", t, comb * 100, dBA);
+        fprintf(pFile2, "%4.1f\t\t%0.0f\t\t\t\t\t\t%4.0f\n", t, comb * 100, dBA);
         counter++;
     }
 
-    ///////////////////////////  // Find contiguous regions without wind noise
+    ///////////////////////////// Find contiguous regions without wind noise
     fclose(pFile);
     pFile = fopen(str2, "r");
     int clean = 1; // 
@@ -361,18 +363,16 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     int first = 0;
     float win = 0;
     float start = 0;
-    fprintf(pFile2, "Wind free regions \n");
+    fprintf(pFile2, "\nWind free regions from - to (s) using a Threshold of %2.0f\n\n",thresh*100);
 
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
         float dBA, t, level, snr, comb;
         sscanf(mystring, "%f %f %f %f %f", &t, &dBA,
                 &level, &snr, &comb);
-
-
         if (comb >= thresh && clean == 1 && initialised == 1 && first == 1) // previous frame was clean now its windy
         {
-            fprintf(pFile2, "%f,  %f; \n", start, t - win * 2);
+            fprintf(pFile2, "%0.2f\t%0.2f\n", start, t - win * 2);
             clean = 0;
 
         } else if (comb < thresh && clean == 0 && initialised == 1) // previous frame was windy now its clean
@@ -381,7 +381,6 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
             clean = 1;
             first = 1;
         }
-
 
         if (initialised == 0) {
             win = t / 2;
@@ -393,21 +392,16 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
                 clean = 1;
                 first = 1;
                 start = t - win * 2;
-
-
             }
             initialised = 1;
-
         }
-
-
         counter++;
-
     }
     ///////////////////////////
 
-
+    fclose(pFile);
     fclose(pFile2);
+    //remove(str2);
 
 }
 

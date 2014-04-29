@@ -38,7 +38,7 @@ extern "C" {
     void computeMFCCs(float *windowIn, int N, int Fs,float *mfcc);
 ////
 }
-void loadWav(char * inFilename, char * outFilename,char *treeDir,float ,int frameAve);
+void loadWav(char * inFilename, char * outFilename,char *treeDir,float ,int frameAve,float thresh);
 #include  "DecisionTreeClass.hpp"
 
 #define WIN_N 1024
