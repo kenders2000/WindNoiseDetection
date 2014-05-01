@@ -338,8 +338,8 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     fprintf(pFile2, "Microphone Wind noise Analysis for input file %s\n\n", filename);
     fprintf(pFile2, "Wind Noise Statistics, %% number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality). also presented is the range in Quality Degradation that each SNR range represents.\n\n");
     fprintf(pFile2, "SNR range;\t>20dB,\t20 to 10dB,\t10 to 0dB,\t0 to -10dB,\t-10 to -20dB,\t<-20dB\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
-    fprintf(pFile2, "Qual. Degradation;\t<24%%,t24 to 40%%,\t40 to 54%%,\t54 to 69%%,\t69 to 95%%,\t>95%%\n");
-    fprintf(pFile2, "%% of time in each SNR range,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+    fprintf(pFile2, "Qual. Degradation;\t<24%%,\t24 to 40%%,\t40 to 54%%,\t54 to 69%%,\t69 to 95%%,\t>95%%\n");
+    fprintf(pFile2, "%% of time in each SNR range;\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
     fprintf(pFile2, "\n");
     fprintf(pFile2, "Wind noise time history\n\n");
     fprintf(pFile2, "T(s)\t\tQuality Degradation(%%)\t dBA \n");
