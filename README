@@ -1,12 +1,12 @@
-INTRODUCTION - Wind Noise Detection in Wav Files - University Of Salford
+INTRODUCTION - Wind Noise Detection in Audio Files - University Of Salford
 --------------------------------------------------------------------------------
-This program automatically analyses .wav files and detects regions where there may be microphone wind noise.  Wind noise is known to degrade the quality of recordings.  
+This program automatically analyses .wav files and detects regions where there may be microphone wind noise.  Wind noise is known to degrade the quality of outdoor recordings and causes problems with hearing aids.  
 
-This tool could be used when there are a large number of recordings of a particular source, for example clips of recording from mobile devices of an outdoor concert.  This tool can quickly analyse the audio from each to determine clips with the least amount of wind noise and therefore of the highest quality.
+This tool could be used when there are a large number of recordings of a particular source, for example clips of recordings from mobile devices of an outdoor concert (user generated content).  This tool can quickly analyse the audio from each to determine samples with the least amount of wind noise and therefore of the highest quality.
 
-The wind noise detection algorithm also provides time stamps identifying the regions which are free of wind noise.  This can allow producers of content to quickly stitch together content from multiple sources, or flag regions where extra processing such as noise reduction is required.
+The wind noise detection algorithm also provides time stamps identifying the regions which are free of wind noise.  This can allow producers to quickly stitch together content from multiple sources, or flag regions where extra processing such as noise reduction is required.
 
-It has been shown that when wind noise is present, the Signal to Noise ratio between the wanted signal and the wind noise is a good indicator of the Quality.  Therefore this detector works by first trying to determine the presence of wind noise and then estimating the SNR to provide an indication of the the possible degradation to the audio quality.
+Perceptual tests have shown that when wind noise is present, the Signal to Noise ratio between the wanted signal and the wind noise is a good indicator of the Quality see “Iain R. Jackson, Paul Kendrick, Trevor J. Cox, Bruno M. Fazenda and Francis Li, Perceptual evaluation of the functional and aesthetic degradation of speech by wind noise during recording, Proceedings of Meetings on Acoustics, ASA, Vol. 19, 060170 (2013)”.  Therefore this detector works by first trying to determine the presence of wind noise and then estimating the SNR to provide an indication of the possible degradation to the audio quality.
 
 Usage:
 --------------------------------------------------------------------------------
@@ -17,39 +17,42 @@ Wav files must be 16 or 32 bit int, or 32 bit float PCM. All channels are collap
 
 windDet -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43] [-w 25]
      -i and -o are required parameters, they provide the input .wav filename and the output filename respectively.
-     -t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 2, 1 is fastest and least accurate.
-     -g 1, sets the gain to apply. The default is 1.  If you have calibrated audio you can adjust the level, by default the peak pressure level is assumed to 104 dB
-     -f n, set the size of the analysis window, windows are 1024 samples.  The default is 43, which is about 1 s
-	 -w sets the threshold quality level for identifying noise free segments, default is 25 (%)
+     -t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 2, 1 is fastest but is least accurate.
+     -g 1, sets the gain to apply. The default is 1.  If you have calibrated audio you can adjust the level, by default the peak pressure level is assumed to 104 dB, gain can be applied if you have an accurate calibration of the pressure level on the recording, which may increase accuracy but is not expressly required.
+     -f n, sets the number of frames used to produce the analysis window to n, windows are 1024 samples long.  The default is n = 43 frames, which is about 1 s
+	 -w sets the threshold degradation in quality level for identifying noise free segments, default is 25 (%), but this can be adjusted depending on the required quality level for the application
 	 
 Output file description
 --------------------------------------------------------------------------------
 
-The output text file specified using the input parameters will contain three sets of outputs.
+The output text file will contain three sets of outputs.
 
 using the following parameter set as an example: windDet.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"  should provide the results presented as the example.
 
-1) Global statistics about the wind noise, this shows the percentage  of frames which are either free of wind noise or contain wind noise within a particular Signal to (wind)Noise ratio (SNR) range.  The following shows an example showing 36.4% of frames are free of wind noise but indicates that wind noise is present the SNR is skewed to lower SNR values.  These global statistics can be used to make a decision as regards the usability of the file.
+1) Global statistics about the wind noise, this shows the percentage  of frames which are either free of wind noise or contain wind noise within a particular Signal to (wind)Noise ratio (SNR) range.  These global statistics can be used to make a decision as regards the usability of the file.  There are there rows of numbers, row one describes 5 ranges of SNRs, row two presents corresponding degradation to quality for a particular SNR range, row three presents the percentage of time the signal is within a particular Quality range. The following shows an example where 36.4% of frames are free of wind noise, but 54% of the time the quality is degraded by over 50%.
 
-Wind Free(>20dB),	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
-36.4				0.0			18.2			27.3			9.1			9.1
+>20dB	20 to 10dB	10 to 0dB	0 to -10dB	-10 to -20dB	<-20dB
+<24%	24 to 40	40 to 54%	54 to 69%	69 to 95%		>96%
+36.4	0.0			18.2		27.3		9.1				9.1
 
-2) The next set of parameters is the wind noise time history.  Three columns are presented, first the time, which represents the end of the analysis window, then the predicted quality degradation due to wind noise, which is computed from  the predicted SNR.  In the final Column is an A-weighted LEQ over the window.  The algorithm assumes that a maximum sample value is equivalent to a SPL of 104 dB, this value was taken as an average of the peak undistorted level of a number of common recording devices : http://usir.salford.ac.uk/29371/1/Distortion_of_Portable_Audio_Devices.pdf, this level can be adjusted by varying the input gain. -g.  
+These statistics can be used to make quick judgements about the file regarding the distribution of wind noise levels, but it is down to the required application to choose a suitable set of criteria for acceptability.
+
+2) The next set of parameters is the wind noise time history.  Three columns are presented: (1) the time at the end of the analysis window; (2) the predicted quality degradation due to wind noise, which is computed from  the predicted SNR, and (3) an A-weighted Leq over the window.  The algorithm assumes that a maximum sample value is equivalent to a Sound Pressure Level of 104 dB, this value was taken as an average of the peak undistorted level of a number of common recording devices : http://usir.salford.ac.uk/29371/1/Distortion_of_Portable_Audio_Devices.pdf, this level can be adjusted by varying the input gain -g should the estimated dBA level appear unrealistic.
+
 
 T(s)		Quality Degradation(%)	 dBA 
  1.0		0						  65
  2.0		0						  79
- 3.0		33						  82
+ 3.0		34						  82
  4.0		0						  74
  5.0		0						  79
- 6.0		54						  88
- 7.0		76						  87
- 8.0		47						  85
- 9.0		57						  87
-10.0		95						  87
+ 6.0		50						  88
+ 7.0		66						  87
+ 8.0		45						  85
+ 9.0		52						  87
+10.0		83						  87
 11.0		0						  82
-
-3) Finally is a set of times which represent the start and end points, in seconds, of regions in the recording which are free of wind noise.  So the following examples shows two segments, on from 0 to 1.99s and the next section from 2.99 to 4.99 s.
+3) Finally is a set of times which represent the start and end points, in seconds, of regions in the recording which are free of wind noise.  So the following example shows two segments, one from 0 to 1.99s and the next from 2.99 to 4.99 s.
 
 0.00	1.99
 2.99	4.99
@@ -59,7 +62,7 @@ An intermediate file is also created which contains the raw classes for sanity c
 The Good Recording Project - overview
 --------------------------------------------------------------------------------
 
-The University of Salford Acoustics Research Centre is carrying out a project entitled the good recording project, investigating how recording errors can effect the perceived quality of audio.  In particular with regards to content recorded on mobile device such as mobile phones, video cameras and other such media often known as "user generated content".  The project website is here http://www.goodrecording.net/.  This wind noise detector was developed as part of an EPSRC funded project http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/J013013/1.
+The University of Salford Acoustics Research Centre is carrying out a project entitled the good recording project, investigating how recording errors can affect the perceived quality of audio.  In particular with regards to content recorded on mobile device such as mobile phones, video cameras and other such media often known as "user generated content".  The project website is here http://www.goodrecording.net/.  This wind noise detector was developed as part of an EPSRC funded project http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/J013013/1.
 
 It is licensed under the MIT license and uses the KISS_fft library (sourceforge.net/projects.kissfft/) which is licensed under the revised BSD license. You are therefore free to use this in pretty much any project.  If you do use this work in any project an acknowledgement would be appreciated, please reference this Link: 
 http://www.salford.ac.uk/computing-science-engineering/subjects/acoustics-audio-and-video
@@ -69,7 +72,7 @@ The software was developed at the University of Salford and uses a bagged decisi
 Wind noise Detector - how does it work
 --------------------------------------------------------------------------------
 
-First the 1024 samples of the wav file is read in, the level calibrated roughly, assuming that a peak sample value is equivalent to 104 dB.  Then 16 Mel Frequency cepstrum Coefficients (20 to 8000 Hz) are extracted (hanning weighting), (MFCCS) this is a spectral representation of the frame.  Three sets of frames are collected and first 12 coefficients stored, the first coefficient is replaced with the A-weighted dBA level over the frame.  These 36 features are concatenated and then two ensembles of decision trees take these features as an input and output, a class number.  Once tree-ensemble attempts to estimate the wind level
+First the 1024 samples of the wav file are read in, the level calibrated roughly, assuming that a peak sample value is equivalent to 104 dB.  Then 16 Mel Frequency Cepstrum Coefficients (20 to 8000 Hz) are extracted (Hanning weighting), (MFCCs) this is a spectral representation of the frame.  Three sets of frames are collected and first 12 coefficients stored; the first coefficient is replaced with the A-weighted level over the frame in dB.  These 36 features are concatenated and then two ensembles of decision trees take these features as an input and output, a class number.  One tree-ensemble attempts to estimate the wind level:
 
 The Average Wind Level class varies from 0 to 3,
 
@@ -78,7 +81,7 @@ The Average Wind Level class varies from 0 to 3,
 2 : 50 to 70 dBA
 3 : > 70 dBA
 
-The second tree-ensemble attempts to estimate the SNR
+The second tree-ensemble attempts to estimate the SNR:
 
 The average SNR class varies from 0 to 5,
 
@@ -87,11 +90,15 @@ The average SNR class varies from 0 to 5,
 2 : -10 to 0dB
 3 : 0 to 10 dB
 4 : 10 to 20 dB
-5 : >  20dB  (very  little wind noise)
+5 : >  20dB  (no or little wind noise)
 
-Class estimates are collected over the analysis period and then averaged, an estimate for quality degradation is computed as follows.  Firstly a analysis window is said to contain wind noise if the average wind level class is greater than 1. If it is less than one, then there is assumed to be no degradation in quality. If it is greater than 1, then the degradation in quality is approximated as the average 5 minus SNR class, multiplied by 20.
+Class estimates are collected over the analysis period and then averaged, an estimate for quality degradation is computed as follows.  Firstly an analysis window is said to contain wind noise if the average wind level class is greater than 1. If it is less than one, then there is assumed to be no degradation in quality. If it is greater than 1, then the quality is approximated as the result of the following polynomial, where x is the average snr class.
+
+0.0093616465*pow(x,9) + -0.2408574076*pow(x,8) + 2.6409491876*pow(x,7) + -16.0598328947*pow(x,6) + 59.1080787296*pow(x,5) + -135.0673590478*pow(x,4) + 189.6816801547*pow(x,3) + -156.8624014598*pow(x,2) + 83.7429623557*pow(x,1) + 4.5226369050;
+
+This polynomial maps the average class value to a quality value using the subjective data presented in “Iain R. Jackson, Paul Kendrick, Trevor J. Cox, Bruno M. Fazenda and Francis Li, Perceptual evaluation of the functional and aesthetic degradation of speech by wind noise during recording, Proceedings of Meetings on Acoustics, ASA, Vol. 19, 060170 (2013)”
+
+What is presented is the degradation in quality so 100-quality
 
 For any comments or questions, please email p.kendrick@salford.ac.uk
-
-
 
