@@ -2,24 +2,25 @@ Microphone Wind Noise Detection - University of Salford - the Good Recording Pro
 
 Microphone Wind noise Analysis for input file test/windsample.wav
 
-Wind Noise Statistics, % number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality)
+Wind Noise Statistics, % number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality). also presented is the range in Quality Degradation that each SNR range represents.
 
-Wind Free(>20dB),	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
-74.6				7.5			13.4			4.5			0.0			0.0
+SNR range;	>20dB,	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
+Qual. Degradation;	<24%,t24 to 40%,	40 to 54%,	54 to 69%,	69 to 95%,	>95%
+% of time in each SNR range,	79.1,	1.5,	7.5,	10.4,	1.5,	0.0
 
 Wind noise time history
 
-T(s)		Quality Degredation(%)	 dBA 
- 1.0		0						  55
+T(s)		Quality Degradation(%)	 dBA 
+ 1.0		0						  27
  2.0		0						  55
  3.0		0						  57
- 4.0		17						  60
- 5.0		40						  63
- 6.0		16						  61
- 7.0		38						  61
+ 4.0		27						  60
+ 5.0		43						  63
+ 6.0		32						  61
+ 7.0		40						  61
  8.0		0						  55
- 9.0		20						  58
-10.0		21						  55
+ 9.0		0						  58
+10.0		38						  55
 11.0		0						  53
 12.0		0						  58
 13.0		0						  60
@@ -35,15 +36,15 @@ T(s)		Quality Degredation(%)	 dBA
 23.0		0						  53
 24.0		0						  52
 25.0		0						  53
-26.0		45						  62
-27.0		50						  60
+26.0		47						  62
+27.0		52						  60
 28.0		0						  53
 28.9		0						  53
-29.9		33						  63
-30.9		15						  72
+29.9		0						  63
+30.9		22						  72
 31.9		0						  67
 32.9		0						  62
-33.9		26						  67
+33.9		41						  67
 34.9		0						  67
 35.9		0						  55
 36.9		0						  55
@@ -51,7 +52,7 @@ T(s)		Quality Degredation(%)	 dBA
 38.9		0						  53
 39.9		0						  53
 40.9		0						  53
-41.9		40						  60
+41.9		42						  60
 42.9		55						  63
 43.9		0						  54
 44.9		0						  53
@@ -61,7 +62,7 @@ T(s)		Quality Degredation(%)	 dBA
 48.9		0						  55
 49.9		0						  56
 50.9		0						  64
-51.9		29						  68
+51.9		26						  68
 52.9		0						  57
 53.9		0						  54
 54.9		0						  59
@@ -72,7 +73,7 @@ T(s)		Quality Degredation(%)	 dBA
 59.9		0						  54
 60.9		0						  56
 61.9		0						  55
-62.9		32						  56
+62.9		40						  56
 63.9		0						  55
 64.9		0						  53
 65.9		0						  55
@@ -80,11 +81,10 @@ T(s)		Quality Degredation(%)	 dBA
 
 Wind free regions from - to (s) using a Threshold of 25
 
-0.00	3.99
-4.99	5.99
-6.99	24.96
-26.96	28.95
-29.95	32.95
+0.00	2.99
+6.99	8.98
+9.98	24.96
+26.96	32.95
 33.94	40.93
 42.93	50.92
 51.92	61.90

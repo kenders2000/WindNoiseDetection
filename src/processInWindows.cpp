@@ -337,10 +337,9 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     fprintf(pFile2, "Microphone Wind Noise Detection - University of Salford - the Good Recording Project http://www.goodrecording.net \n\n", filename);
     fprintf(pFile2, "Microphone Wind noise Analysis for input file %s\n\n", filename);
     fprintf(pFile2, "Wind Noise Statistics, %% number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality). also presented is the range in Quality Degradation that each SNR range represents.\n\n");
-    fprintf(pFile2, "SNR range\t\t\t\t\t>20dB\t\t20 to 10dB\t10 to 0dB\t0 to -10dB\t\t-10 to -20dB\t<-20dB\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
-    fprintf(pFile2, "Qual. Degradation \t\t\t<24%%\t\t24 to 40%%\t40 to 54%%\t54 to 69%%\t\t69 to 95%%\t>95%%\n");
-
-    fprintf(pFile2, "%% of time in each SNR range\t%0.1f\t\t%0.1f\t\t\t%0.1f\t\t%0.1f\t\t\t%0.1f\t\t\t%0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+    fprintf(pFile2, "SNR range;\t>20dB,\t20 to 10dB,\t10 to 0dB,\t0 to -10dB,\t-10 to -20dB,\t<-20dB\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+    fprintf(pFile2, "Qual. Degradation;\t<24%%,t24 to 40%%,\t40 to 54%%,\t54 to 69%%,\t69 to 95%%,\t>95%%\n");
+    fprintf(pFile2, "%% of time in each SNR range,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
     fprintf(pFile2, "\n");
     fprintf(pFile2, "Wind noise time history\n\n");
     fprintf(pFile2, "T(s)\t\tQuality Degradation(%%)\t dBA \n");
@@ -354,8 +353,6 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
         float qual= 0.0093616465*pow(x,9) + -0.2408574076*pow(x,8) + 2.6409491876*pow(x,7) + -16.0598328947*pow(x,6) + 59.1080787296*pow(x,5) + -135.0673590478*pow(x,4) + 189.6816801547*pow(x,3) + -156.8624014598*pow(x,2) + 83.7429623557*pow(x,1) + 4.5226369050;
         if (comb==0)
             qual=100;
-    
-
 
         fprintf(pFile2, "%4.1f\t\t%0.0f\t\t\t\t\t\t%4.0f\n", t, 100-qual, dBA);
         counter++;
@@ -369,13 +366,20 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     int first = 0;
     float win = 0;
     float start = 0;
-    fprintf(pFile2, "\nWind free regions from - to (s) using a Threshold of %2.0f\n\n",thresh*100);
+    fprintf(pFile2, "\nWind free regions from - to (s) using a Threshold of %2.0f\n\n",thresh);
 
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
         float dBA, t, level, snr, comb;
+        
         sscanf(mystring, "%f %f %f %f %f", &t, &dBA,
                 &level, &snr, &comb);
+               float x=snr;
+        float qual= 0.0093616465*pow(x,9) + -0.2408574076*pow(x,8) + 2.6409491876*pow(x,7) + -16.0598328947*pow(x,6) + 59.1080787296*pow(x,5) + -135.0673590478*pow(x,4) + 189.6816801547*pow(x,3) + -156.8624014598*pow(x,2) + 83.7429623557*pow(x,1) + 4.5226369050;
+        if (comb==0)
+            qual=100;
+    comb=100-qual;
+        
         if (comb >= thresh && clean == 1 && initialised == 1 && first == 1) // previous frame was clean now its windy
         {
             fprintf(pFile2, "%0.2f\t%0.2f\n", start, t - win * 2);

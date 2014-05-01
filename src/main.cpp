@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
              case 'w':
                 thresh = atof(optarg);
                 printf("\nThreshold=%0.0f", thresh);
-                thresh=thresh/100;
+                thresh=thresh;
                 break;
             case 'g':
                 gain = atof(optarg);
