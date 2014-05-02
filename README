@@ -32,8 +32,8 @@ using the following parameter set as an example: windDet.exe "-i" "test/iphone1.
 1) Global statistics about the wind noise, this shows the percentage  of frames which are either free of wind noise or contain wind noise within a particular Signal to (wind)Noise ratio (SNR) range.  These global statistics can be used to make a decision as regards the usability of the file.  There are there rows of numbers, row one describes 5 ranges of SNRs, row two presents corresponding degradation to quality for a particular SNR range, row three presents the percentage of time the signal is within a particular Quality range. The following shows an example where 36.4% of frames are free of wind noise, but 54% of the time the quality is degraded by over 50%.
 
 >20dB	20 to 10dB	10 to 0dB	0 to -10dB	-10 to -20dB	<-20dB
-<24%	24 to 40	40 to 54%	54 to 69%	69 to 95%		>96%
-36.4	0.0			18.2		27.3		9.1				9.1
+<24%	24 to 40	40 to 54%	54 to 69%	69 to 95%	>96%
+36.4	0.0		18.2	27.3	9.1		9.1
 
 These statistics can be used to make quick judgements about the file regarding the distribution of wind noise levels, but it is down to the required application to choose a suitable set of criteria for acceptability.
 
