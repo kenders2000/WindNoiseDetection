@@ -33,7 +33,7 @@ using the following parameter set as an example: windDet.exe "-i" "test/iphone1.
 
 >20dB	20 to 10dB	10 to 0dB	0 to -10dB	-10 to -20dB	<-20dB
 <24%	24 to 40	40 to 54%	54 to 69%	69 to 95%	>96%
-36.4	0.0		18.2	27.3	9.1		9.1
+36.4	0.0	18.2	27.3	9.1		9.1
 
 These statistics can be used to make quick judgements about the file regarding the distribution of wind noise levels, but it is down to the required application to choose a suitable set of criteria for acceptability.
 
