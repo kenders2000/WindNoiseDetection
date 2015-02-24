@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=Cygwin_4.x_1_32-Windows
+CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Release
 CND_DISTDIR=dist

@@ -47,7 +47,7 @@
     <conf name="Release" type="1">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>3</platform>
+        <platform>4</platform>
       </toolsSet>
       <dbx_gdbdebugger version="1">
         <gdb_pathmaps>

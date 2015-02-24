@@ -55,11 +55,14 @@
     <conf name="Debug" type="1">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>GNU|GNU</compilerSet>
-        <dependencyChecking>false</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
+        <compilerSet>CLang|CLang</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <commandlineTool>gcc</commandlineTool>
+        </cTool>
         <ccTool>
           <stripSymbols>true</stripSymbols>
         </ccTool>
@@ -94,7 +97,7 @@
     <conf name="Release" type="1">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>Cygwin_4.x_1_32|Cygwin_4.x</compilerSet>
+        <compilerSet>MinGW|MinGW</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>

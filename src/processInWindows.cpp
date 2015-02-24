@@ -41,6 +41,7 @@ static struct wavfile header;
 void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int frameAve,float thresh) {
     char str1[100], str2[100];
     FILE * pFile;
+    FILE *pFileJSON;
 
 
     sprintf(str1, "trees/%s/levelClass", treeDir);
@@ -121,16 +122,17 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     int wN = 0;
     int wNo = WIN_N / 2;
 
-    sprintf(str2, "%s.b", outFilename);
+    sprintf(str2, "%s.b", outFilename);    remove(str2);
 
-    remove(str2);
+
 
     pFile = fopen(str2, "w");
-
+    
 
 
     //if the wav is 16 bit PCM
     int counter;
+    int firstWin=0;
     int classLevel;
     int classSNR;
     int i;
@@ -330,7 +332,8 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     aveAveLevel = aveAveLevel / counter;
     
      // remove(outFilename);
-
+pFileJSON = fopen("data.json", "w");    
+//
     FILE * pFile2;
     pFile2 = fopen(outFilename, "w");
     pFile = fopen(str2, "r");
@@ -343,6 +346,12 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
     fprintf(pFile2, "\n");
     fprintf(pFile2, "Wind noise time history\n\n");
     fprintf(pFile2, "T(s)\t\tQuality Degradation(%%)\t dBA \n");
+    
+    //JSON global stats
+     fprintf(pFileJSON, "[\n\t{\n\t\"test\": \"Global Stats\",\n\t\"results\": [" );                    
+    fprintf(pFileJSON, "%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f]\n\t},", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+
+    fprintf(pFileJSON, "\n\t{\n\t\"test\": \"Time History\",\n\t\"results\": [\n" );                    
 
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
@@ -355,12 +364,23 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
             qual=100;
 
         fprintf(pFile2, "%4.1f\t\t%0.0f\t\t\t\t\t\t%4.0f\n", t, 100-qual, dBA);
+                    if (firstWin ==1)
+                      fprintf(pFileJSON, ",\n");                   
+                    fprintf(pFileJSON, "\t\t{\"T\": %0.2f, \"dBA\": %0.0f, \"QDeg\": %0.2f}", t, dBA, 100-qual);                    
+                    firstWin=1;
         counter++;
     }
 
     ///////////////////////////// Find contiguous regions without wind noise
     fclose(pFile);
     pFile = fopen(str2, "r");
+    fprintf(pFileJSON, "\n \t\t] \n \t},\n");
+    fprintf(pFileJSON, "\t{\n\t\"test\": \"wind free regions\",\n\t\"results\": [\n" );                    
+
+     
+    
+    
+    firstWin=0;
     int clean = 1; // 
     int initialised = 0;
     int first = 0;
@@ -383,6 +403,11 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
         if (comb >= thresh && clean == 1 && initialised == 1 && first == 1) // previous frame was clean now its windy
         {
             fprintf(pFile2, "%0.2f\t%0.2f\n", start, t - win * 2);
+                   if (firstWin ==1)
+                      fprintf(pFileJSON, ",\n");                   
+                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.0f}", t, start,  t - win * 2);                    
+                    firstWin=1;
+            
             clean = 0;
 
         } else if (comb < thresh && clean == 0 && initialised == 1) // previous frame was windy now its clean
@@ -411,6 +436,9 @@ void loadWav(char * filename, char * outFilename, char *treeDir, float gain, int
 
     fclose(pFile);
     fclose(pFile2);
+     fprintf(pFileJSON, "\t]\n}\n]");
+     fclose(pFileJSON);
+
     //remove(str2);
 
 }

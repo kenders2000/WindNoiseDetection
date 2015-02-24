@@ -1,0 +1,28 @@
+Microphone Wind Noise Detection - University of Salford - the Good Recording Project http://www.goodrecording.net 
+
+Microphone Wind noise Analysis for input file test/iphone1.wav
+
+Wind Noise Statistics, % number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality)
+
+Wind Free(>20dB),	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
+36.4				0.0			18.2			27.3			9.1			9.1
+
+Wind noise time history
+
+T(s)		Quality Degredation(%)	 dBA 
+ 1.0		0						  65
+ 2.0		0						  79
+ 3.0		33						  82
+ 4.0		0						  74
+ 5.0		0						  79
+ 6.0		54						  88
+ 7.0		76						  87
+ 8.0		47						  85
+ 9.0		57						  87
+10.0		95						  87
+11.0		0						  82
+
+Wind free regions from - to (s) using a Threshold of 25
+
+0.00	1.99
+2.99	4.99

@@ -1,0 +1,29 @@
+Microphone Wind Noise Detection - University of Salford - the Good Recording Project http://www.goodrecording.net 
+
+Microphone Wind noise Analysis for input file test/iphone1.wav
+
+Wind Noise Statistics, % number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality). also presented is the range in Quality Degradation that each SNR range represents.
+
+SNR range;	>20dB,	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
+Qual. Degradation;	<24%,	24 to 40%,	40 to 54%,	54 to 69%,	69 to 95%,	>95%
+% of time in each SNR range;	45.5,	0.0,	9.1,	27.3,	9.1,	9.1
+
+Wind noise time history
+
+T(s)		Quality Degradation(%)	 dBA 
+ 1.0		0						  66
+ 2.0		0						  79
+ 3.0		33						  82
+ 4.0		0						  74
+ 5.0		0						  79
+ 6.0		50						  88
+ 7.0		66						  87
+ 8.0		45						  85
+ 9.0		52						  87
+10.0		83						  87
+11.0		0						  82
+
+Wind free regions from - to (s) using a Threshold of 25
+
+0.00	1.99
+2.99	4.99
