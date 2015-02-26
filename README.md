@@ -22,7 +22,7 @@ Wav files must be 16 or 32 bit int, or 32 bit float PCM. All channels are collap
 
 ```
 windDet -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43] [-w 25]
-     -i and -o are required parameters, they provide the input .wav filename and the output filename respectively.
+     -i and -o are required parameters, they provide the input .wav filename and the output filename respectively. Specify the output as a text file, include path if required, the program will also output a json file with the same name in the same path.
      -t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 2, 1 is fastest but is least accurate.
      -g 1, sets the gain to apply. The default is 1.  If you have calibrated audio you can adjust the level, by default the peak pressure level is assumed to 104 dB, gain can be applied if you have an accurate calibration of the pressure level on the recording, which may increase accuracy but is not expressly required.
      -f n, sets the number of frames used to produce the analysis window to n, windows are 1024 samples long.  The default is n = 43 frames, which is about 1 s
@@ -46,7 +46,7 @@ This shows the percentage  of frames which are either free of wind noise or cont
  2. Corresponding degradation to quality for a particular SNR range.
  3. Percentage of time the signal is within a particular Quality range.
  
-The test output shows an example where 36.4% of frames are free of wind noise, but 54% of the time the quality is degraded by over 50%.
+The test output of the text file shows an example where 36.4% of frames are free of wind noise, but 54% of the time the quality is degraded by over 50%.  (the json outputs the same data but formatted as to be readable by a json interpreter).
 
 
 | SNR | >20dB | 20 to 10dB   | 10 to 0dB   | 0 to -10dB | -10 to -20dB   | <-20dB |
