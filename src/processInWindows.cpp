@@ -38,7 +38,7 @@ struct wavfile {
 
 static struct wavfile header;
 
-void loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh) {
+int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh) {
     char str1[100], str2[100];
     FILE * pFile;
     FILE *pFileJSON;
@@ -60,11 +60,19 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
     FILE * wav;
 
     wav = fopen(filename, "r");
+     if(wav==NULL)
+     {
+        printf("Can't read input file \n");
+        return 1;
+    }
+       
     //check openable
     int test = sizeof (header);
     if (fread(&header, sizeof (header), 1, wav) < 1) {
         fprintf(stderr, "Can't read input file header %s\n", filename);
-        exit(1);
+         printf("Can't read input file header %s\n", filename);
+
+        return 1;
     }
     printf("\nWavefile Header");
     printf("chunk ID %.*s\n", 4, header.id);
@@ -81,7 +89,7 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
 
     if (header.fs != 44100.0) {
         fprintf(stderr, "Input must be sampled at 44100 Hz \n");
-        exit(1);
+        exit(0);
     }
     // Skip though rest of header to find data 
     char datahead[4];
@@ -174,8 +182,17 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
                     printf("Supported formats are 16 and 32 bit signed integer, and IEEE float little-endian - any number of channels");
                     break;
                 }
+            if (feof(wav))
+            {
+                printf("End of file was reached.\n");
+                      return 1;
 
-
+            }
+            if (ferror(wav))
+            {
+                printf("An error reading the wav occurred.\n");
+                return 1;
+            }
                 float tmp3 = (tmp2 / (float) header.nochan) / normV * 158489.0 * gain; //*  158489=  10^(104/20)
                 window[wN] = window[wN] + tmp3;
                 // printf("%f \n",window[wN]);
@@ -187,7 +204,10 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
 
             //every WIN_N samples do this
             wN++;
+
             if (wN == WIN_N) {
+                // printf("1 \n");
+
                 for (n = 0; n < WIN_N / 2; n++)
                     windowOver[n] = windowPrev[n];
                 for (n = (WIN_N) / 2; n < WIN_N; n++)
@@ -220,6 +240,7 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
                 }
                 int n;
                 if ((frame % frameAve) == 0 && frame > 1) {
+
                     float avedBA = 10.0 * log10(avermsAW / (float) counter);
                     float aveLevel = sumclassLevel / (float) counter;
                     float aveSNR = sumclassSNR / (float) counter;
@@ -248,7 +269,8 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
                 wN = 0;
                 frame++;
                 for (n = 0; n < (WIN_N); n++)
-                    window[n] = 0;
+                    window[n] = 0;                                     
+
             }
 
 
@@ -318,7 +340,8 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
         //printf("%f %f %f %f %f \n", t, dBA, 
         //       level,snr, comb);
         counter++;
-    }
+    }               
+
     fclose(pFile);
     count_wF0 = count_wF0 / counter * 100.0;
     count_wF1 = count_wF1 / counter * 100.0;
@@ -331,9 +354,12 @@ void loadWav(char * filename, char * outFilename,const char *jsonFilename, char 
     aveAveSNR = aveAveSNR / counter;
     aveAveLevel = aveAveLevel / counter;
     
-     // remove(outFilename);
+      remove(outFilename);
+      remove(jsonFilename);
+
 pFileJSON = fopen(jsonFilename, "w");    
 //
+
     FILE * pFile2;
     pFile2 = fopen(outFilename, "w");
     pFile = fopen(str2, "r");
@@ -352,7 +378,6 @@ pFileJSON = fopen(jsonFilename, "w");
     fprintf(pFileJSON, "%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f]\n\t},", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
 
     fprintf(pFileJSON, "\n\t{\n\t\"test\": \"Time History\",\n\t\"results\": [\n" );                    
-
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
         float dBA, t, level, snr, comb;

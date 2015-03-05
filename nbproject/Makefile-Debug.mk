@@ -15,14 +15,14 @@ NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
 CC=gcc
-CCC=clang++
-CXX=clang++
+CCC=g++
+CXX=g++
 FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=CLang-MacOSX
-CND_DLIB_EXT=dylib
+CND_PLATFORM=Cygwin_4.x_1_32-Windows
+CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -61,41 +61,41 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/src/DecisionTreeClass.o: nbproject/Makefile-${CND_CONF}.mk src/DecisionTreeClass.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -s -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/DecisionTreeClass.o src/DecisionTreeClass.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/DecisionTreeClass.o src/DecisionTreeClass.cpp
 
 ${OBJECTDIR}/src/aweighting.o: nbproject/Makefile-${CND_CONF}.mk src/aweighting.c 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/aweighting.o src/aweighting.c
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/aweighting.o src/aweighting.c
 
 ${OBJECTDIR}/src/featureExtraction.o: nbproject/Makefile-${CND_CONF}.mk src/featureExtraction.c 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/featureExtraction.o src/featureExtraction.c
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/featureExtraction.o src/featureExtraction.c
 
 ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o: nbproject/Makefile-${CND_CONF}.mk src/kiss_fft130/kiss_fft.c 
 	${MKDIR} -p ${OBJECTDIR}/src/kiss_fft130
-	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o src/kiss_fft130/kiss_fft.c
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/kiss_fft130/kiss_fft.o src/kiss_fft130/kiss_fft.c
 
 ${OBJECTDIR}/src/main.o: nbproject/Makefile-${CND_CONF}.mk src/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -s -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/main.o src/main.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
 
 ${OBJECTDIR}/src/processInWindows.o: nbproject/Makefile-${CND_CONF}.mk src/processInWindows.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -s -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/processInWindows.o src/processInWindows.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/processInWindows.o src/processInWindows.cpp
 
 # Subprojects
 .build-subprojects:
@@ -103,7 +103,7 @@ ${OBJECTDIR}/src/processInWindows.o: nbproject/Makefile-${CND_CONF}.mk src/proce
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1.exe
 
 # Subprojects
 .clean-subprojects:

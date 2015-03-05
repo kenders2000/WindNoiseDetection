@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
     int treeFail = 0;
     float gain = 1;
     int frameAve = 43;
-    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:")) != -1) {
+    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:j:")) != -1) {
         switch (opt) {
              case 'w':{
                 thresh = atof(optarg);
@@ -92,9 +92,14 @@ int main(int argc, char* argv[]) {
             case 'o':{
                 out_fname = optarg;
                 printf("\nOutput file=%s", out_fname);
-                std::string Str = std::string(optarg);
-                replaceExt(Str, "json");
-                json_fname= Str.c_str();
+//                std::string Str = std::string(optarg);
+//                replaceExt(Str, "json");
+//                json_fname= Str.c_str();
+//                printf("\nOutput file=%s", json_fname);
+
+                break;}
+            case 'j':{
+                json_fname = optarg;
                 printf("\nOutput file=%s", json_fname);
 
                 break;}
@@ -135,7 +140,7 @@ int main(int argc, char* argv[]) {
 
 
 
-
+    int status;
     if (testForIO == 0 || treeFail == 1) {
         printf("\nIncorrect or missing input parameters");
 
@@ -145,14 +150,17 @@ int main(int argc, char* argv[]) {
         printf("\n-g 1, sets the gain to apply. The default is 1.");
         printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");
 
-
+    status=0;
     }else
     {    
         printf("\n");
-        loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh);
+       status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh);
     }
+    if (status==1)
+        printf("\nError!");
+      if (status==0)
+        printf("\nSuccess!");
 
-
-    return 0;
+    return status;
 }
 
