@@ -371,10 +371,12 @@ pFileJSON = fopen(jsonFilename, "w");
     fprintf(pFile2, "T(s)\t\tQuality Degradation(%%)\t dBA \n");
     
     //JSON global stats
-     fprintf(pFileJSON, "[\n\t{\n\t\"test\": \"Global Stats\",\n\t\"results\": [" );                    
-    fprintf(pFileJSON, "%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f]\n\t},", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+   //  fprintf(pFileJSON, "[\n\t{\n\t\"test\": \"Global Stats\",\n\t\"results\": [" );                    
+  fprintf(pFileJSON, "{\n \t\"Global Stats\":\n \t [ \n" );                    
 
-    fprintf(pFileJSON, "\n\t{\n\t\"test\": \"Time History\",\n\t\"results\": [\n" );                    
+    fprintf(pFileJSON, "\t\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n\t\t],\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
+
+    fprintf(pFileJSON, "\t \"Time History\":\n\t [\n" );                    
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
         float dBA, t, level, snr, comb;
@@ -396,8 +398,8 @@ pFileJSON = fopen(jsonFilename, "w");
     ///////////////////////////// Find contiguous regions without wind noise
     fclose(pFile);
     pFile = fopen(str2, "r");
-    fprintf(pFileJSON, "\n \t\t] \n \t},\n");
-    fprintf(pFileJSON, "\t{\n\t\"test\": \"wind free regions\",\n\t\"results\": [\n" );                    
+    fprintf(pFileJSON, "\n\t],\n");
+    fprintf(pFileJSON, "\t\"Wind free regions\":\n \t [\n" );                    
 
      
     
@@ -427,7 +429,7 @@ pFileJSON = fopen(jsonFilename, "w");
             fprintf(pFile2, "%0.2f\t%0.2f\n", start, t - win * 2);
                    if (firstWin ==1)
                       fprintf(pFileJSON, ",\n");                   
-                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.0f}", t, start,  t - win * 2);                    
+                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.2f}", t, t - win * 2,start  );                    
                     firstWin=1;
             
             clean = 0;
@@ -458,7 +460,7 @@ pFileJSON = fopen(jsonFilename, "w");
 
     fclose(pFile);
     fclose(pFile2);
-     fprintf(pFileJSON, "\t]\n}\n]");
+     fprintf(pFileJSON, "\n\t]\n}\n");
      fclose(pFileJSON);
 
     remove(str2);
