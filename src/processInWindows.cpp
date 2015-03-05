@@ -131,9 +131,6 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
     int wNo = WIN_N / 2;
 
     sprintf(str2, "%s.b", outFilename);    remove(str2);
-
-
-
     pFile = fopen(str2, "w");
     
 
@@ -464,7 +461,7 @@ pFileJSON = fopen(jsonFilename, "w");
      fprintf(pFileJSON, "\t]\n}\n]");
      fclose(pFileJSON);
 
-    //remove(str2);
+    remove(str2);
 
 }
 
