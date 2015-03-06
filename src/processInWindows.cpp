@@ -401,9 +401,6 @@ pFileJSON = fopen(jsonFilename, "w");
     fprintf(pFileJSON, "\n\t],\n");
     fprintf(pFileJSON, "\t\"Wind free regions\":\n \t [\n" );                    
 
-     
-    
-    
     firstWin=0;
     int clean = 1; // 
     int initialised = 0;
@@ -429,7 +426,7 @@ pFileJSON = fopen(jsonFilename, "w");
             fprintf(pFile2, "%0.2f\t%0.2f\n", start, t - win * 2);
                    if (firstWin ==1)
                       fprintf(pFileJSON, ",\n");                   
-                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.2f}", t, t - win * 2,start  );                    
+                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.2f}", start, t - win * 2 );                    
                     firstWin=1;
             
             clean = 0;
