@@ -47,10 +47,10 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
     sprintf(str1, "trees/%s/levelClass", treeDir);
     sprintf(str2, "trees/%s/snrClass", treeDir);
     DTree LevelTree, SNRTree;
-    printf("\nLoading Decision Trees");
+    //printf("\nLoading Decision Trees");
     LevelTree.readTextFilesTrees(str1);
     SNRTree.readTextFilesTrees(str2);
-    printf("\nDone");
+   // printf("\nDone");
 
     //http://www.sonicspot.com/guide/wavefiles.html
     //http://yannesposito.com/Scratch/en/blog/2010-10-14-Fun-with-wav/char 
@@ -62,30 +62,30 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
     wav = fopen(filename, "r");
      if(wav==NULL)
      {
-        printf("Can't read input file \n");
-        return 1;
+    //    printf("Can't read input file \n");
+        return 1;exit(1);
     }
        
     //check openable
     int test = sizeof (header);
     if (fread(&header, sizeof (header), 1, wav) < 1) {
         fprintf(stderr, "Can't read input file header %s\n", filename);
-         printf("Can't read input file header %s\n", filename);
+       //  printf("Can't read input file header %s\n", filename);
 
-        return 1;
+        return 1;exit(1);
     }
-    printf("\nWavefile Header");
-    printf("chunk ID %.*s\n", 4, header.id);
-    printf("Total length %i\n", header.totallength);
-    printf("should say WAVE %.*s\n", 4, header.type);
-    printf("should say fmt : %.*s\n", 4, header.typeId);
-    printf("format chunk size : %i\n", header.fmtchunksize);
-    printf("Compression code %i\n", header.compression);
-    printf("No. Channels %i\n", header.nochan);
-    printf("Fs  %i \n", header.fs);
-    printf("bytes_per_sec  %i \n", header.bytes_per_sec);
-    printf("blockalign  %i\n", header.blockalign);
-    printf("bits_per_sample  %i\n", header.bits_per_sample);
+//    printf("\nWavefile Header");
+//    printf("chunk ID %.*s\n", 4, header.id);
+//    printf("Total length %i\n", header.totallength);
+//    printf("should say WAVE %.*s\n", 4, header.type);
+//    printf("should say fmt : %.*s\n", 4, header.typeId);
+//    printf("format chunk size : %i\n", header.fmtchunksize);
+//    printf("Compression code %i\n", header.compression);
+//    printf("No. Channels %i\n", header.nochan);
+//    printf("Fs  %i \n", header.fs);
+//    printf("bytes_per_sec  %i \n", header.bytes_per_sec);
+//    printf("blockalign  %i\n", header.blockalign);
+//    printf("bits_per_sample  %i\n", header.bits_per_sample);
 
     if (header.fs != 44100.0) {
         fprintf(stderr, "Input must be sampled at 44100 Hz \n");
@@ -109,7 +109,7 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
     // printf("should say data %.*s\n", 4, datahead);
     fread(&datasize, sizeof (int32_t), 1, wav);
 
-    printf("datasize %i\n", datasize);
+    //printf("datasize %i\n", datasize);
     int32_t NoBlocks = datasize / (header.bits_per_sample / 8 * header.nochan);
 
     // allocate memory for time domain items
@@ -176,19 +176,19 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
                     tmp2 = tmp;
                     normV = 1; //(16777216.0/2.0);
                 } else {
-                    printf("Supported formats are 16 and 32 bit signed integer, and IEEE float little-endian - any number of channels");
-                    break;
+                 //   printf("Supported formats are 16 and 32 bit signed integer, and IEEE float little-endian - any number of channels");
+                   exit(1); break;
                 }
             if (feof(wav))
             {
-                printf("End of file was reached.\n");
-                      return 1;
+              //  printf("End of file was reached.\n");
+                      return 1;exit(1);
 
             }
             if (ferror(wav))
             {
-                printf("An error reading the wav occurred.\n");
-                return 1;
+             //   printf("An error reading the wav occurred.\n");
+                return 1;exit(1);
             }
                 float tmp3 = (tmp2 / (float) header.nochan) / normV * 158489.0 * gain; //*  158489=  10^(104/20)
                 window[wN] = window[wN] + tmp3;
@@ -248,7 +248,7 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
                         tmp = 1.0 / 5.0;
                         Combined = (5 - aveSNR) * tmp;
                     }
-                    printf(" %0.2f %0.0f %0.2f %0.2f %0.2f\n", time, avedBA, aveLevel, aveSNR, Combined);
+                   // printf(" %0.2f %0.0f %0.2f %0.2f %0.2f\n", time, avedBA, aveLevel, aveSNR, Combined);
                     fprintf(pFile, " %0.2f %0.0f %0.2f %0.2f %0.2f\n", time, avedBA, aveLevel, aveSNR, Combined);
 
                     sumclassLevel = 0;

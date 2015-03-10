@@ -46,6 +46,7 @@ void replaceExt(string& s, const string& newExt) {
  */
 int main(int argc, char* argv[]) {
     int testForIO = 0;
+        int status;
     // char * inputFile = "iphone1.wav";
     // char * outputFile = "iphone1.wav";
     int opt = 0;
@@ -67,16 +68,16 @@ int main(int argc, char* argv[]) {
         switch (opt) {
              case 'w':{
                 thresh = atof(optarg);
-                printf("\nThreshold=%0.0f", thresh);
+                //printf("\nThreshold=%0.0f", thresh);
                 thresh=thresh;
                 break;}
             case 'g':{
                 gain = atof(optarg);
-                printf("\nGain=%f", gain);
+                //printf("\nGain=%f", gain);
                 break;}
             case 'f':{
                 frameAve = atoi(optarg);
-                printf("\nAnalysis period=%f ms", (float) (frameAve * WIN_N) / 44100.0 * 1000);
+                //printf("\nAnalysis period=%f ms", (float) (frameAve * WIN_N) / 44100.0 * 1000);
                 break;}
             case 'h':{
                 printf("\nwindnoisedetection.exe -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43]");
@@ -87,11 +88,11 @@ int main(int argc, char* argv[]) {
                 break;}
             case 'i':{
                 in_fname = optarg;
-                printf("\nInput file =%s", in_fname);
+                //printf("\nInput file =%s", in_fname);
                 break;}
             case 'o':{
                 out_fname = optarg;
-                printf("\nOutput file=%s", out_fname);
+                //printf("\nOutput file=%s", out_fname);
 //                std::string Str = std::string(optarg);
 //                replaceExt(Str, "json");
 //                json_fname= Str.c_str();
@@ -100,17 +101,17 @@ int main(int argc, char* argv[]) {
                 break;}
             case 'j':{
                 json_fname = optarg;
-                printf("\nOutput file=%s", json_fname);
+                //printf("\nOutput file=%s", json_fname);
 
                 break;}
             case 't':{
                 tree = atoi(optarg) - 1;
                 if (tree < 3) {
                     treeDir = trees[tree];
-                    printf("\nUsing %s", trees[tree]);
+                    //printf("\nUsing %s", trees[tree]);
                 } else {
                     treeFail = 1;
-                    printf("\nMust be a number between 1 and 3 inclusive");
+                    //printf("\nMust be a number between 1 and 3 inclusive");
 
                 }
 
@@ -123,16 +124,16 @@ int main(int argc, char* argv[]) {
                  * $ ./cmd_exe -i
                  */
                 if (optopt == 'i') {
-                    printf("\nMissing  input file");
+                    //printf("\nMissing  input file");
                     /* Case when user enters the command as
                      * # ./cmd_exe -o
                      */
                 } else if (optopt == 'o') {
-                    printf("\nMissing  output file");
+                    //printf("\nMissing  output file");
                 } else {
-                    printf("\nInvalid option received");
+                    //printf("\nInvalid option received");
                 }
-                printf("\n");
+                //printf("\n");
                 break;}
         }
         testForIO = 1;
@@ -140,26 +141,28 @@ int main(int argc, char* argv[]) {
 
 
 
-    int status;
+
     if (testForIO == 0 || treeFail == 1) {
-        printf("\nIncorrect or missing input parameters");
+        //printf("\nIncorrect or missing input parameters");
 
-        printf("\nwindnoisedetection.exe -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43]");
-        printf("\n-i and -o are required parameters, they provide the input .wav filename and the output filename respectively. ");
-        printf("\n-t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 1.");
-        printf("\n-g 1, sets the gain to apply. The default is 1.");
-        printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");
+        //printf("\nwindnoisedetection.exe -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43]");
+        //printf("\n-i and -o are required parameters, they provide the input .wav filename and the output filename respectively. ");
+       // printf("\n-t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 1.");
+        //printf("\n-g 1, sets the gain to apply. The default is 1.");
+        //printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");
 
-    status=0;
+        status=0;
     }else
     {    
-        printf("\n");
+        //printf("\n");
        status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh);
     }
-    if (status==1)
-        printf("\nError!");
-      if (status==0)
-        printf("\nSuccess!");
+   if (status==1)
+           exit (EXIT_FAILURE);
+     //  printf("\nError!");
+     if (status==0)
+         exit(status);
+    //   printf("\nSuccess!");
 
     return status;
 }
