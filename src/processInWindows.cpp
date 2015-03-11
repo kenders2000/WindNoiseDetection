@@ -416,10 +416,10 @@ pFileJSON = fopen(jsonFilename, "w");
     float win = 0;
     float start = 0;
     fprintf(pFile2, "\nWind free regions from - to (s) using a Threshold of %2.0f\n\n",thresh);
-
+   float dBA, t, level, snr, comb;
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
-        float dBA, t, level, snr, comb;
+        
         
         sscanf(mystring, "%f %f %f %f %f", &t, &dBA,
                 &level, &snr, &comb);
@@ -462,7 +462,17 @@ pFileJSON = fopen(jsonFilename, "w");
         counter++;
     }
     ///////////////////////////
+ if (comb < thresh && clean == 1 ) // last frame if clean
+        {
+            fprintf(pFile2, "%0.2f\t%0.2f\n", start, t+1);
+                   if (firstWin ==1)
+                      fprintf(pFileJSON, ",\n");                   
+                    fprintf(pFileJSON, "\t\t{\"s\": %0.2f, \"e\": %0.2f}", start, t  );                    
+                    firstWin=1;
+            
+            clean = 0;
 
+ }
     fclose(pFile);
     fclose(pFile2);
      fprintf(pFileJSON, "\n\t]\n}\n");
