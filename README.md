@@ -21,21 +21,23 @@ The program requires compiling using a C++ compiler and runs as a command line e
 Wav files must be 16 or 32 bit int, or 32 bit float PCM. All channels are collapsed to one (average of all channels)
 
 ```
-windDet -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43] [-w 25]
+windDet -i wav_filename -o output_filename -j  output_filename_json[-t 1] [-g 1] [-f 43] [-w 25]
      -i and -o are required parameters, they provide the input .wav filename and the output filename respectively. Specify the output as a text file, include path if required, the program will also output a json file with the same name in the same path.
+	 -j specifies the path and name of the json file containing the output data.
      -t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 2, 1 is fastest but is least accurate.
      -g 1, sets the gain to apply. The default is 1.  If you have calibrated audio you can adjust the level, by default the peak pressure level is assumed to 104 dB, gain can be applied if you have an accurate calibration of the pressure level on the recording, which may increase accuracy but is not expressly required.
      -f n, sets the number of frames used to produce the analysis window to n, windows are 1024 samples long.  The default is n = 43 frames, which is about 1 s
    -w sets the threshold degradation in quality level for identifying noise free segments, default is 25 (%), but this can be adjusted depending on the required quality level for the application
+   
 ```
    
 ### Output file description and example
 
-The output text file will contain three sets of outputs: global statistics, wind noise time history, and start and end points of wind noise. Using the following parameter set should provide the results presented.
+The output text file will contain three sets of outputs: global statistics, wind noise time history, and start and end points of wind noise. Using the following parameter set should provide the results presented.  Additionally a json file will be oututted with the same data
 
 
 ```
-windDet.exe -i test/iphone1.wav -o test/iphone1.txt -t 1 -g 1 -f 43 -w 25
+windDet.exe -i test/iphone1.wav -o test/iphone1.txt -j test/iphone1.json -t 1 -g 1 -f 43 -w 25 
 ```
 
 #### Global statistics about  wind noise

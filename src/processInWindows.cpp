@@ -372,10 +372,8 @@ pFileJSON = fopen(jsonFilename, "w");
     
     //JSON global stats
    //  fprintf(pFileJSON, "[\n\t{\n\t\"test\": \"Global Stats\",\n\t\"results\": [" );                    
-  fprintf(pFileJSON, "{\n \t\"Global Stats\":\n \t [ \n" );                    
-
+    fprintf(pFileJSON, "{\n \t\"Global Stats\":\n \t [ \n" );                    
     fprintf(pFileJSON, "\t\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n\t\t],\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
-
     fprintf(pFileJSON, "\t \"Time History\":\n\t [\n" );                    
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
