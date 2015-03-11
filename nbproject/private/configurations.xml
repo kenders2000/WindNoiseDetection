@@ -24,7 +24,6 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "3"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "3" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/windsample.txt.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
           <runcommandpicklistitem>wind.exe "-i" "test/windsample.wav" "-o" "test/windsample.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
@@ -34,8 +33,9 @@
           <runcommandpicklistitem>./windDet "-i" "test/iphone2.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
           <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
           <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommand>
+        <runcommand>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

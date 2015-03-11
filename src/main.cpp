@@ -64,12 +64,17 @@ int main(int argc, char* argv[]) {
     int treeFail = 0;
     float gain = 1;
     int frameAve = 43;
-    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:j:")) != -1) {
+    int verbose=0;
+    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:j:v:")) != -1) {
         switch (opt) {
              case 'w':{
                 thresh = atof(optarg);
                 //printf("\nThreshold=%0.0f", thresh);
                 thresh=thresh;
+                break;}
+            case 'v':{
+                verbose = atof(optarg);
+
                 break;}
             case 'g':{
                 gain = atof(optarg);
@@ -143,26 +148,27 @@ int main(int argc, char* argv[]) {
 
 
     if (testForIO == 0 || treeFail == 1) {
-        //printf("\nIncorrect or missing input parameters");
-
-        //printf("\nwindnoisedetection.exe -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43]");
-        //printf("\n-i and -o are required parameters, they provide the input .wav filename and the output filename respectively. ");
-       // printf("\n-t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 1.");
-        //printf("\n-g 1, sets the gain to apply. The default is 1.");
-        //printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");
-
+        if (verbose ==1)
+        {
+        printf("\nIncorrect or missing input parameters");
+        printf("\nwindnoisedetection.exe -i wav_filename -o output_filename [-t 1] [-g 1] [-f 43]");
+        printf("\n-i and -o are required parameters, they provide the input .wav filename and the output filename respectively. ");
+        printf("\n-t n, sets the tree size to n, where n is an integer (1,2 or 3). The default is 1.");
+        printf("\n-g 1, sets the gain to apply. The default is 1.");
+        printf("\n-f n, set the size of the analysis window, windows are 1024 samples.  The default is 43.");printf("\n");
+        }
         status=0;
     }else
     {    
-        //printf("\n");
-       status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh);
+        //
+       status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh,verbose);
     }
    if (status==1)
            exit (EXIT_FAILURE);
-     //  printf("\nError!");
+       //printf("\nError!");
      if (status==0)
          exit(status);
-    //   printf("\nSuccess!");
+      //printf("\nSuccess!");
 
     return status;
 }
