@@ -26,9 +26,13 @@ THE SOFTWARE.
 
 //#include <cstdlib>
 #include "processInWindows.hpp"
-//#include <stdio.h>
-#include <unistd.h>
 #include <string>
+//#include <stdio.h>
+extern "C" {
+#include <unistd.h>
+#include <stdio.h>
+
+}
 
 using namespace std;
 using std::string;
@@ -70,7 +74,7 @@ int main(int argc, char* argv[]) {
              case 'w':{
                 thresh = atof(optarg);
                 //printf("\nThreshold=%0.0f", thresh);
-                thresh=thresh;
+                //thresh=thresh;
                 break;}
             case 'v':{
                 verbose = atof(optarg);

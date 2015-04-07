@@ -26,10 +26,11 @@ THE SOFTWARE.
 //  Created by kenders on 23/08/2013.
 //  Copyright (c) 2013 The University of Salford. All rights reserved.
 */
+
 #include <math.h>
+#include <stdio.h>
+        void aWeightingPreComp(float * f,int fftn);
+        void aWeighting(float * f, float * a ,int Len, float * rms,int fftn );
 
-
-
-
-
+//#import "Helper.h"
 

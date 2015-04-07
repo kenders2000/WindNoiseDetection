@@ -1,17 +1,17 @@
 CXX      = g++
-CXXFLAGS = -Wall -ansi -g
+CXXFLAGS = -Wall -ansi -g 
 CC       = gcc
 CCFLAGS  = -g
 OBJS     = src/main.o src/processInWindows.o src/DecisionTreeClass.o src/aweighting.o src/featureExtraction.o src/kiss_fft130/kiss_fft.o
 
 windDet : $(OBJS)
-	$(CXX) -o $@ $(OBJS)
+	$(CXX) -o  $@ $(OBJS)
 
 OBJ/%.o : %.cpp
-	$(CXX) -c $(CXXFLAGS) $<
+	$(CXX) -c  $(CXXFLAGS) $<
 
 OBJ/%.o : %.c
-	$(CC) -c $(CCFLAGS) $<
+	$(CC) -c  $(CCFLAGS) $<
 
 
 clean:

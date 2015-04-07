@@ -21,12 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *///
-
-#include <stdio.h>
-#include <math.h>
-//#import "Helper.h"
+#include "aweighting.h"
 static float *AWfun;
-
 void aWeighting(float * f, float * a ,int Len, float * rms,int fftn )
 {
     // Compute AW input is the magnitude (a)

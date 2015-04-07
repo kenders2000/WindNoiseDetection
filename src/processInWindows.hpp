@@ -34,9 +34,10 @@ extern "C" {
 #include <string.h> // for memcmp
 #include <stdint.h> // for int16_t and int32_t
 #include "featureExtraction.h"
-    void initVarsFeats(int N,int Fs);
-    void computeMFCCs(float *windowIn, int N, int Fs,float *mfcc);
-////
+    #include "aweighting.h"
+        void aWeightingPreComp(float * f,int fftn);
+        void aWeighting(float * f, float * a ,int Len, float * rms,int fftn );
+
 }
 int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh,int verbose);
 #include  "DecisionTreeClass.hpp"

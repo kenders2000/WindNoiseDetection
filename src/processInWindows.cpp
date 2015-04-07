@@ -247,6 +247,8 @@ int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *
                 if ((frame % frameAve) == 0 && frame > 1) {
 
                     float avedBA = 10.0 * log10(avermsAW / (float) counter);
+                    if (isinf(avedBA)==1)
+                        avedBA=0;
                     float aveLevel = sumclassLevel / (float) counter;
                     float aveSNR = sumclassSNR / (float) counter;
                     float time = (float) WIN_N / header.fs * (float) frame - (float) WIN_N / header.fs / 2.0;
@@ -384,7 +386,8 @@ pFileJSON = fopen(jsonFilename, "w");
    //  fprintf(pFileJSON, "[\n\t{\n\t\"test\": \"Global Stats\",\n\t\"results\": [" );                    
     fprintf(pFileJSON, "{\n \t\"Global Stats\":\n \t [ \n" );                    
     fprintf(pFileJSON, "\t\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f,\t%0.1f\n\t\t],\n", count_wF0, count_wF1, count_wF2, count_wF3, count_wF4, count_wF5);
-    fprintf(pFileJSON, "\t \"Time History\":\n\t [\n" );                    
+    fprintf(pFileJSON, "\t \"Time History\":\n\t [\n" );  
+    float tLast=0;
     while (fgets(mystring, sizeof (mystring), pFile) != NULL) {
 
         float dBA, t, level, snr, comb;
@@ -398,8 +401,9 @@ pFileJSON = fopen(jsonFilename, "w");
         fprintf(pFile2, "%4.1f\t\t%0.0f\t\t\t\t\t\t%4.0f\n", t, 100-qual, dBA);
                     if (firstWin ==1)
                       fprintf(pFileJSON, ",\n");                   
-                    fprintf(pFileJSON, "\t\t{\"T\": %0.2f, \"dBA\": %0.0f, \"QDeg\": %0.2f}", t, dBA, 100-qual);                    
+                    fprintf(pFileJSON, "\t\t{\"Ts\": %0.2f,\"Te\": %0.2f, \"dBA\": %0.0f, \"QDeg\": %0.2f}", tLast,t, dBA, 100-qual);                    
                     firstWin=1;
+                    tLast=t;
         counter++;
     }
 
