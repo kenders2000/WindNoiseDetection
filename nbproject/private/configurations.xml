@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="89">
+<configurationDescriptor version="94">
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <dbx_gdbdebugger version="1">
         <gdb_pathmaps>
@@ -24,18 +24,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>windDet.exe "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
-          <runcommandpicklistitem>windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/iphone2.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "3" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/Vlogging_in_the_park_-_sorry_about_the_wind_noise.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "3" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/Vlogging in the park - sorry about the wind noise.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "3" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/Vlogging in the park - sorry about the wind noise.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
-          <runcommandpicklistitem>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:/Users/ags056/Dropbox/Salford Acoustics Work Stuff/ProgrammingProjects/WindDetcpp/windnoiseexamples/Didgeridoo Glastonbury Tor. Summerset. Bealer10..wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "125153__alienistcog__bird-chatter.aif https://www.freesound.org/people/alienistcog/sounds/125153/  184831__hitrison__mooing-cows-sad-upset https://www.freesound.org/people/Hitrison/sounds/184831/" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "19320__thsha1__thsha1-binaural-bird-song-20060528-1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:/Users/ags056/Dropbox/Perception and Automated Assessment of Recorded Audio Quality/online_detector/testFiles/Wind/19320__thsha1__thsha1-binaural-bird-song-20060528-1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:/Users/ags056/Dropbox/Perception and Automated Assessment of Recorded Audio Quality/online_detector/testFiles/Wind/125153__alienistcog__bird-chatter.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:/Users/ags056/Dropbox/Perception and Automated Assessment of Recorded Audio Quality/online_detector/testFiles/Wind/184831__hitrison__mooing-cows-sad-upset.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:/Users/ags056/Dropbox/Perception and Automated Assessment of Recorded Audio Quality/online_detector/testFiles/Wind/Didgeridoo Glastonbury Tor. Summerset. Bealer10..wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:\Users\ags056\Dropbox\Perception and Automated Assessment of Recorded Audio Quality\online_detector\testFiles\clipping\368__plagasul__metro-musica.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:\Users\ags056\Dropbox\Perception and Automated Assessment of Recorded Audio Quality\online_detector\testFiles\clipping\368__plagasul__metro-musica.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1" "-l" "/trees"</runcommandpicklistitem>
+          <runcommandpicklistitem>./windDet "-i" "C:\Users\ags056\Dropbox\Perception and Automated Assessment of Recorded Audio Quality\online_detector\testFiles\clipping\368__plagasul__metro-musica.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1" "-l" "trees"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>./windDet "-i" "test/iphone1.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "1" "-g" "1" "-f" "43" "-w" "25" "-v" "1"</runcommand>
+        <runcommand>./windDet "-i" "C:\Users\ags056\Dropbox\Perception and Automated Assessment of Recorded Audio Quality\online_detector\testFiles\clipping\368__plagasul__metro-musica.wav" "-o" "test/iphone1.txt" "-j" "test/iphone1.json" "-t" "2" "-g" "1" "-f" "43" "-w" "25" "-v" "1" "-l" "trees"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
@@ -47,7 +47,7 @@
     <conf name="Release" type="1">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <dbx_gdbdebugger version="1">
         <gdb_pathmaps>

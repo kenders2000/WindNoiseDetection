@@ -38,14 +38,14 @@ struct wavfile {
 
 static struct wavfile header;
 
-int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh,int verbose) {
+int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh,int verbose,char * treeFileLoc) {
     char str1[100], str2[100];
     FILE * pFile;
     FILE *pFileJSON;
 
 
-    sprintf(str1, "trees/%s/levelClass", treeDir);
-    sprintf(str2, "trees/%s/snrClass", treeDir);
+    sprintf(str1, "%s/%s/levelClass",treeFileLoc, treeDir);
+    sprintf(str2, "%s/%s/snrClass",treeFileLoc, treeDir);
     DTree LevelTree, SNRTree;
             
     if (verbose ==1){printf("\nLoading Decision Trees");}

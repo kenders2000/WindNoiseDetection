@@ -39,7 +39,7 @@ extern "C" {
         void aWeighting(float * f, float * a ,int Len, float * rms,int fftn );
 
 }
-int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh,int verbose);
+int loadWav(char * filename, char * outFilename,const char *jsonFilename, char *treeDir, float gain, int frameAve,float thresh,int verbose,char * treeFileLoc);
 #include  "DecisionTreeClass.hpp"
 
 #define WIN_N 1024

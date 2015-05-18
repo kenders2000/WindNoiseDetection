@@ -69,8 +69,12 @@ int main(int argc, char* argv[]) {
     float gain = 1;
     int frameAve = 43;
     int verbose=0;
-    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:j:v:")) != -1) {
+    char *treeFileLoc = (char *)"trees";
+    while ((opt = getopt(argc, argv, "i:o:t:g:f:h:w:j:v:l:")) != -1) {
         switch (opt) {
+                        case 'l':{
+                treeFileLoc= optarg;
+            break;}
              case 'w':{
                 thresh = atof(optarg);
                 //printf("\nThreshold=%0.0f", thresh);
@@ -165,7 +169,7 @@ int main(int argc, char* argv[]) {
     }else
     {    
         //
-       status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh,verbose);
+       status= loadWav(in_fname, out_fname,json_fname, treeDir, gain, frameAve,thresh,verbose,treeFileLoc);
     }
    if (status==1)
            exit (EXIT_FAILURE);
