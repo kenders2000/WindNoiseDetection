@@ -1,143 +1,37 @@
 Microphone Wind Noise Detection - University of Salford - the Good Recording Project http://www.goodrecording.net 
 
-Microphone Wind noise Analysis for input file C:/Users/ags056/Dropbox/Perception and Automated Assessment of Recorded Audio Quality/online_detector/testFiles/Wind/125153__alienistcog__bird-chatter.wav
+Microphone Wind noise Analysis for input file tmpaudio.wav
 
 Wind Noise Statistics, % number of frames with wind noise detected at the following Signal to noise Ratios (high values = good quality low values = bad quality). also presented is the range in Quality Degradation that each SNR range represents.
 
 SNR range;	>20dB,	20 to 10dB,	10 to 0dB,	0 to -10dB,	-10 to -20dB,	<-20dB
 Qual. Degradation;	<24%,	24 to 40%,	40 to 54%,	54 to 69%,	69 to 95%,	>95%
-% of time in each SNR range;	90.3,	5.6,	2.4,	0.0,	1.6,	0.0
+% of time in each SNR range;	100.0,	0.0,	0.0,	0.0,	0.0,	0.0
 
 Wind noise time history
 
 T(s)		Quality Degradation(%)	 dBA 
- 1.0		0						  63
- 2.0		0						  62
- 3.0		0						  63
- 4.0		0						  59
- 5.0		0						  61
- 6.0		0						  62
- 7.0		0						  62
- 8.0		0						  61
- 9.0		0						  61
-10.0		0						  62
-11.0		0						  60
-12.0		0						  60
-13.0		0						  61
-14.0		0						  59
-15.0		0						  56
-16.0		0						  59
-17.0		0						  59
-18.0		0						  60
-19.0		0						  58
-20.0		0						  61
-21.0		0						  61
-22.0		0						  62
-23.0		0						  59
-24.0		0						  61
-25.0		0						  61
-26.0		0						  64
-27.0		0						  62
-28.0		0						  65
-28.9		0						  64
-29.9		0						  64
-30.9		0						  63
-31.9		0						  66
-32.9		0						  65
-33.9		0						  66
-34.9		0						  65
-35.9		0						  65
-36.9		0						  65
-37.9		0						  66
-38.9		0						  66
-39.9		0						  64
-40.9		0						  66
-41.9		29						  66
-42.9		39						  74
-43.9		55						  79
-44.9		18						  65
-45.9		20						  65
-46.9		0						  65
-47.9		21						  67
-48.9		25						  63
-49.9		0						  67
-50.9		18						  69
-51.9		0						  68
-52.9		0						  68
-53.9		0						  62
-54.9		0						  59
-55.9		0						  62
-56.9		0						  58
-57.9		0						  55
-58.9		0						  61
-59.9		0						  62
-60.9		0						  66
-61.9		0						  64
-62.9		0						  64
-63.9		0						  64
-64.9		0						  66
-65.9		0						  68
-66.9		0						  66
-67.9		0						  68
-68.9		0						  67
-69.9		0						  70
-70.9		0						  67
-71.9		0						  68
-72.9		0						  66
-73.9		0						  66
-74.9		0						  67
-75.9		0						  66
-76.9		0						  70
-77.9		0						  65
-78.9		0						  66
-79.9		0						  67
-80.9		0						  69
-81.9		0						  69
-82.9		0						  69
-83.9		0						  65
-84.9		12						  69
-85.9		0						  67
-86.8		0						  66
-87.8		0						  67
-88.8		0						  65
-89.8		15						  66
-90.8		0						  66
-91.8		0						  65
-92.8		0						  65
-93.8		0						  65
-94.8		0						  65
-95.8		0						  63
-96.8		0						  63
-97.8		0						  58
-98.8		0						  61
-99.8		0						  57
-100.8		0						  56
-101.8		0						  57
-102.8		0						  64
-103.8		0						  63
-104.8		20						  66
-105.8		0						  67
-106.8		0						  65
-107.8		0						  64
-108.8		0						  65
-109.8		58						  74
-110.8		0						  65
-111.8		0						  64
-112.8		0						  65
-113.8		0						  64
-114.8		0						  64
-115.8		0						  63
-116.8		0						  63
-117.8		0						  64
-118.8		0						  66
-119.8		0						  64
-120.8		0						  62
-121.8		0						  63
-122.8		0						  61
-123.8		0						  64
+ 1.0		0						  39
+ 2.0		0						  39
+ 3.0		0						  39
+ 4.0		0						  39
+ 5.0		0						  39
+ 6.0		0						  39
+ 7.0		0						  39
+ 8.0		0						  39
+ 9.0		0						  39
+10.0		0						  39
+11.0		0						  40
+12.0		0						  40
+13.0		0						  39
+14.0		0						  40
+15.0		0						  39
+16.0		0						  39
+17.0		0						  39
+18.0		0						  39
+19.0		0						  39
+20.0		0						  39
 
 Wind free regions from - to (s) using a Threshold of 25
 
-0.00	40.93
-43.93	108.83
-109.83	124.80
+0.00	20.96
